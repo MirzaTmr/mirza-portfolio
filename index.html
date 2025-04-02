@@ -3,70 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mirza Taimur Ali Baig - Engineering Portfolio</title>
+    <title>Mirza Taimur Ali Baig - Electrical Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>Mirza Taimur Ali Baig</h1>
-        <p>Computer Engineering Student | Software Developer | Problem Solver</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="circuit-bg">
+        <div class="header-content">
+            <h1 class="spark-text">Mirza Taimur Ali Baig</h1>
+            <p class="typewriter">Electrical Engineer | Embedded Systems Specialist | Power Electronics Enthusiast</p>
+            <nav>
+                <ul>
+                    <li><a href="#about" class="nav-glow"><i class="fas fa-bolt"></i> About</a></li>
+                    <li><a href="#projects" class="nav-glow"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                    <li><a href="#skills" class="nav-glow"><i class="fas fa-microchip"></i> Skills</a></li>
+                    <li><a href="#experience" class="nav-glow"><i class="fas fa-briefcase"></i> Experience</a></li>
+                    <li><a href="#contact" class="nav-glow"><i class="fas fa-plug"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Computer Engineering student at Memorial University of Newfoundland with a strong passion for software development, robotics, and problem-solving. Actively involved in technical projects, leadership roles, and volunteering.</p>
-    </section>
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Traffic Flow Manager</h3>
-            <p>Designed a modular traffic management system in Python, utilizing polymorphic classes and Moore Machine logic. Optimized light sequence efficiency by 40% through recursive algorithms and real-time input handling.</p>
-            <a href="#">GitHub Link</a>
-        </div>
-        <div class="project">
-            <h3>Arduino Music Encryptor</h3>
-            <p>Developed an Arduino-powered encryption system integrating sensors and a rotary dial. Created a backend in Python and Java to convert data into musical notes for secure communication.</p>
-            <a href="#">GitHub Link</a>
+    <section id="about" class="fade-scroll">
+        <h2><span class="section-spark">About Me</span></h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-graduation-cap pulse"></i>
+                <h3>Education</h3>
+                <p>B.Eng Electrical Engineering (Co-op)<br>Memorial University of Newfoundland<br>GPA: 3.7/4.0</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-bolt pulse"></i>
+                <h3>Focus Areas</h3>
+                <p>Power Electronics<br>Embedded Systems<br>Circuit Design<br>Renewable Energy</p>
+            </div>
         </div>
     </section>
     
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Python, C++, JavaScript</li>
-            <li>AutoCAD, Onshape</li>
-            <li>Embedded Systems</li>
-            <li>Logistics and Distribution Management</li>
-        </ul>
+    <section id="projects" class="fade-scroll">
+        <h2><span class="section-spark">Featured Projects</span></h2>
+        
+        <div class="project-card" onclick="void(0)">
+            <div class="project-header">
+                <h3>Smart Grid Prototype</h3>
+                <div class="tech-tags">
+                    <span>MATLAB</span>
+                    <span>PLC</span>
+                    <span>Modbus</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <ul>
+                    <li>Modeled distributed generation system with 15% renewable penetration using Newton-Raphson load flow</li>
+                    <li>Implemented automatic load shedding algorithm preventing cascade failures in 99.8% of test cases</li>
+                </ul>
+                <a href="https://github.com/MirzaTmr" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="circuit-overlay"></div>
+        </div>
+        
+        <div class="project-card" onclick="void(0)">
+            <div class="project-header">
+                <h3>Arduino Music Encryptor</h3>
+                <div class="tech-tags">
+                    <span>Arduino</span>
+                    <span>Python</span>
+                    <span>WLAN</span>
+                </div>
+            </div>
+            <div class="project-content">
+                <ul>
+                    <li>Developed sensor-based encryption system with 98% reliability for secure communication</li>
+                    <li>Implemented WLAN compatibility through cross-platform debugging</li>
+                </ul>
+                <a href="https://github.com/MirzaTmr/Arduino-Music-Encryptor" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="circuit-overlay"></div>
+        </div>
     </section>
     
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="experience">
-            <h3>Technical Lead - Canada Games</h3>
-            <p>Configured and deployed laptops and mobile devices for an event with 200,000+ participants, ensuring system reliability, data security, and seamless operations.</p>
-        </div>
-        <div class="experience">
-            <h3>Marketing Corporate Intern - Mulk International</h3>
-            <p>Enhanced global networking and client outreach across 70+ countries through digital marketing and technical documentation.</p>
+    <section id="skills" class="fade-scroll">
+        <h2><span class="section-spark">Technical Skills</span></h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Hardware Design</h3>
+                <ul>
+                    <li>AutoCAD/Onshape</li>
+                    <li>PCB Prototyping</li>
+                    <li>SPICE Simulation</li>
+                    <li>Circuit Analysis</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <h3>Programming</h3>
+                <ul>
+                    <li>Python/C++</li>
+                    <li>Embedded C</li>
+                    <li>VHDL</li>
+                    <li>MATLAB</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <div class="skill-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Power Systems</h3>
+                <ul>
+                    <li>Buck/Boost Converters</li>
+                    <li>Three-Phase Analysis</li>
+                    <li>Motor Control</li>
+                    <li>Renewable Integration</li>
+                </ul>
+            </div>
         </div>
     </section>
     
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: mtabaig@mun.ca</p>
-        <p><a href="https://linkedin.com/in/mirza-taimur">LinkedIn</a> | <a href="https://github.com/MirzaTmr">GitHub</a></p>
+    <section id="experience" class="fade-scroll">
+        <h2><span class="section-spark">Professional Experience</span></h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024-Present</div>
+                <div class="timeline-content">
+                    <h3>Operations Manager | Banana Republic</h3>
+                    <ul>
+                        <li>Automated inventory tracking using SQL queries and Excel macros, reducing processing time by 30%</li>
+                        <li>Optimized team workflows, improving operational efficiency by 50% through process redesign</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023-2024</div>
+                <div class="timeline-content">
+                    <h3>Design Lead | MUN Concrete Toboggan</h3>
+                    <ul>
+                        <li>Programmed Arduino-based strain gauges to monitor structural integrity during test runs</li>
+                        <li>Led structural design evaluation using AutoCAD, achieving 3rd place in national competition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
+    
+    <section id="contact" class="fade-scroll">
+        <h2><span class="section-spark">Get In Touch</span></h2>
+        <div class="contact-grid">
+            <a href="mailto:mtabaig@mun.ca" class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <span>mtabaig@mun.ca</span>
+            </a>
+            <a href="tel:+17097499711" class="contact-card">
+                <i class="fas fa-phone"></i>
+                <span>+1 (709) 749-9711</span>
+            </a>
+            <a href="https://linkedin.com/in/mirza-taimur" target="_blank" class="contact-card">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/mirza-taimur</span>
+            </a>
+            <a href="https://github.com/MirzaTmr" target="_blank" class="contact-card">
+                <i class="fab fa-github"></i>
+                <span>github.com/MirzaTmr</span>
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2024 Mirza Taimur Ali Baig | Electrical Engineering Portfolio</p>
+        <div class="circuit-line"></div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
