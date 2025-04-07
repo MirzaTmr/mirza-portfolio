@@ -1,4 +1,54 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile detection
+    const isMobile = window.innerWidth < 768;
+    
+    // Theme toggle - same as before
+    
+    // Typewriter effect with mobile adjustments
+    const typewriter = document.querySelector('.typewriter');
+    if (typewriter) {
+        const text = "Term-4 Electrical Engineering Co-op Undergrad @ MUN";
+        let i = 0;
+        typewriter.textContent = '';
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typewriter.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, isMobile ? 30 : 50);
+            }
+        }
+        setTimeout(typeWriter, isMobile ? 500 : 1000);
+    }
+
+    // Terminal effect with mobile adjustments
+    function initTerminal() {
+        const commands = document.querySelectorAll('.command-line');
+        commands.forEach((cmd, index) => {
+            const delay = isMobile ? index * 200 : index * 400;
+            cmd.style.animationDelay = `${delay}ms`;
+            
+            const command = cmd.querySelector('.command');
+            if (command) {
+                const text = command.textContent;
+                command.textContent = '';
+                let i = 0;
+                function typeCommand() {
+                    if (i < text.length) {
+                        command.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeCommand, isMobile ? 30 : 50);
+                    }
+                }
+                setTimeout(typeCommand, delay);
+            }
+        });
+    }
+    initTerminal();
+
+    // Other existing functionality...
+});
+document.addEventListener('DOMContentLoaded', function() {
     // Theme toggle functionality
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
