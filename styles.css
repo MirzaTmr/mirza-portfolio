@@ -1,3 +1,125 @@
+/* Mobile-First Base Styles */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Header */
+.header-content {
+    padding: 100px 20px;
+    min-height: auto;
+}
+
+.spark-text {
+    font-size: 2rem;
+}
+
+.typewriter {
+    font-size: 1rem;
+    white-space: normal;
+    border-right: none;
+}
+
+/* About Section */
+.about-content {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.tech-bio {
+    margin-left: 0;
+}
+
+/* Timeline */
+.timeline::before {
+    left: 20px;
+}
+
+.timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+}
+
+.timeline-content {
+    padding: 15px;
+}
+
+.experience-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.bullet {
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 1.2em;
+}
+
+/* Projects */
+.project-card {
+    margin: 20px 0;
+}
+
+.project-header h3 {
+    font-size: 1.1rem;
+}
+
+/* Contact */
+.contact-grid {
+    grid-template-columns: 1fr;
+}
+
+/* Tablet+ */
+@media (min-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+    
+    .header-content {
+        padding: 150px 40px;
+    }
+    
+    .about-content {
+        flex-direction: row;
+        padding: 40px;
+    }
+    
+    .timeline::before {
+        left: 50%;
+    }
+    
+    .timeline-item {
+        width: 50%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .contact-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 /* Modern Electrical Engineering Portfolio Styles */
 :root {
     --primary: #00aaff;
