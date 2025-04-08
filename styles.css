@@ -376,30 +376,19 @@ section {
 
 .experience-content ul {
     padding-left: 20px;
-    list-style: none;
 }
 
 .experience-content li {
     margin-bottom: 12px;
     position: relative;
     font-size: 1.05rem;
-    padding-left: 25px;
-    line-height: 1.6;
 }
 
 .experience-content li::before {
-    content: '';
+    content: '→';
+    color: var(--primary);
     position: absolute;
-    left: 0;
-    top: 0.6em;
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary);
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-.experience-content li::after {
-    display: none;
+    left: -20px;
 }
 
 /* Responsive Design */
@@ -489,10 +478,4 @@ section {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    .experience-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
 }
-
