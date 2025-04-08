@@ -1,54 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile detection
-    const isMobile = window.innerWidth < 768;
-    
-    // Theme toggle - same as before
-    
-    // Typewriter effect with mobile adjustments
-    const typewriter = document.querySelector('.typewriter');
-    if (typewriter) {
-        const text = "Term-4 Electrical Engineering Co-op Undergrad @ MUN";
-        let i = 0;
-        typewriter.textContent = '';
-        
-        function typeWriter() {
-            if (i < text.length) {
-                typewriter.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, isMobile ? 30 : 50);
-            }
-        }
-        setTimeout(typeWriter, isMobile ? 500 : 1000);
-    }
-
-    // Terminal effect with mobile adjustments
-    function initTerminal() {
-        const commands = document.querySelectorAll('.command-line');
-        commands.forEach((cmd, index) => {
-            const delay = isMobile ? index * 200 : index * 400;
-            cmd.style.animationDelay = `${delay}ms`;
-            
-            const command = cmd.querySelector('.command');
-            if (command) {
-                const text = command.textContent;
-                command.textContent = '';
-                let i = 0;
-                function typeCommand() {
-                    if (i < text.length) {
-                        command.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeCommand, isMobile ? 30 : 50);
-                    }
-                }
-                setTimeout(typeCommand, delay);
-            }
-        });
-    }
-    initTerminal();
-
-    // Other existing functionality...
-});
-document.addEventListener('DOMContentLoaded', function() {
     // Theme toggle functionality
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
@@ -116,14 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -100px 0px'
     });
 
-    document.querySelectorAll('.fade-scroll').forEach(section => {
-        observer.observe(section);
+    // Observe all scrollable elements
+    document.querySelectorAll('.fade-scroll, .experience-item').forEach(element => {
+        observer.observe(element);
     });
 
     // Typewriter effect for header
     const typewriter = document.querySelector('.typewriter');
     if (typewriter) {
-        const text = "Term-4 Electrical Engineering Co-op Undergrad @ MUN";
+        const text = "Term-4 Electrical Engineering Co-op Undergrad @ Memorial University of Newfoundland";
         let i = 0;
         typewriter.textContent = '';
         
@@ -141,21 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(typeWriter, 1000);
     }
 
-    // Timeline item animations
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.2}s`;
-    });
-
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            updateThemeIcon(newTheme);
-        }
-    });
+    // Terminal typing effect
+    initTerminal();
 });
+
 // Terminal typing effect
 function initTerminal() {
     const commands = document.querySelectorAll('.command-line');
@@ -178,9 +118,3 @@ function initTerminal() {
         }
     });
 }
-
-// Call this in your DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    initTerminal();
-    // ... rest of your existing code
-});
