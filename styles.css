@@ -376,19 +376,29 @@ section {
 
 .experience-content ul {
     padding-left: 20px;
+    list-style: none;
 }
 
 .experience-content li {
     margin-bottom: 12px;
     position: relative;
     font-size: 1.05rem;
+    padding-left: 25px;
 }
 
 .experience-content li::before {
-    content: '→';
-    color: var(--primary);
+    content: '';
     position: absolute;
-    left: -20px;
+    left: 0;
+    top: 0.6em;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.experience-content li::after {
+    display: none;
 }
 
 /* Responsive Design */
