@@ -55,32 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const fadeObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
 
-    const experienceObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 150);
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements
-    document.querySelectorAll('.fade-scroll').forEach(el => fadeObserver.observe(el));
-    document.querySelectorAll('.experience-item').forEach(el => experienceObserver.observe(el));
+    // Observe all scrollable elements
+    document.querySelectorAll('.fade-scroll, .experience-item').forEach(element => {
+        observer.observe(element);
+    });
 
     // Typewriter effect for header
     const typewriter = document.querySelector('.typewriter');
@@ -107,23 +96,24 @@ document.addEventListener('DOMContentLoaded', function() {
     initTerminal();
 });
 
+// Terminal typing effect
 function initTerminal() {
     const commands = document.querySelectorAll('.command-line');
     commands.forEach((cmd, index) => {
+        cmd.style.animationDelay = `${index * 0.3}s`;
+        
         const command = cmd.querySelector('.command');
         if (command) {
             const text = command.textContent;
             command.textContent = '';
             let i = 0;
-            
             function typeCommand() {
                 if (i < text.length) {
                     command.textContent += text.charAt(i);
                     i++;
-                    setTimeout(typeCommand, Math.random() * 30 + 30);
+                    setTimeout(typeCommand, 50);
                 }
             }
-            
             setTimeout(typeCommand, index * 500);
         }
     });
