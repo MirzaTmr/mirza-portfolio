@@ -731,3 +731,97 @@ footer {
         font-size: 1.2rem;
     }
 }
+/* Update these styles in your styles.css file */
+
+/* Fix bullet points throughout the document */
+.project-content li::before,
+.experience-content li::before {
+    position: absolute;
+    left: -1em;
+    color: var(--primary);
+}
+
+.project-content li,
+.experience-content li {
+    position: relative;
+    padding-left: 1em;
+    margin-bottom: 0.8em;
+}
+
+/* Remove default list styling */
+.project-content ul,
+.experience-content ul {
+    list-style: none;
+    padding-left: 1em;
+}
+
+/* Improve About Me section layout */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px;
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+[data-theme="light"] .about-content {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.left-column {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tech-bio {
+    flex: 2;
+    min-width: 300px;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.einstein-quote {
+    background: rgba(0, 170, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+    font-style: italic;
+}
+
+.einstein-quote p {
+    margin-bottom: 10px;
+    color: var(--light);
+}
+
+.einstein-quote span {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* Improve terminal window appearance */
+.terminal-window {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
