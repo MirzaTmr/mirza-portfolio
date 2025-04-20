@@ -213,3 +213,107 @@ document.addEventListener('DOMContentLoaded', function() {
     initExperienceModals();
     initFlipCards(); // Keep your flip cards initialization
 });
+// Enhanced Experience Modals with Touch Support
+function initExperienceModals() {
+    const expCards = document.querySelectorAll('.exp-card');
+    const modals = document.querySelectorAll('.experience-modal');
+    const backLinks = document.querySelectorAll('.back-link');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    // Track touch start position
+    let touchStartY = 0;
+
+    // Open modal when clicking/tapping a card
+    expCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Prevent accidental clicks while scrolling on mobile
+            if (window.innerWidth <= 768) {
+                const touchEndY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+                if (Math.abs(touchStartY - touchEndY) > 10) return;
+            }
+
+            const targetId = this.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Focus for accessibility
+                modal.setAttribute('tabindex', '-1');
+                modal.focus();
+            }
+        });
+
+        // For touch devices
+        card.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+    });
+
+    // Close modal with back link
+    backLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllModals();
+        });
+    });
+
+    // Close modal with close button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeAllModals();
+        });
+    });
+
+    // Close modal when clicking outside content
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAllModals();
+            }
+        });
+        
+        // Prevent background scrolling when modal is open
+        modal.addEventListener('touchmove', function(e) {
+            if (this.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    });
+
+    // Close all modals and re-enable scrolling
+    function closeAllModals() {
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+    }
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+
+    // Handle iOS viewport height changes
+    function handleViewportHeight() {
+        if (window.innerWidth <= 768) {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+    }
+
+    // Initialize and listen for resize
+    handleViewportHeight();
+    window.addEventListener('resize', handleViewportHeight);
+}
+
+// Call this in your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    initExperienceModals();
+    initFlipCards();
+});
