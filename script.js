@@ -118,3 +118,98 @@ function initTerminal() {
         }
     });
 }
+// Add this to your existing script.js
+function initFlipCards() {
+    const flipCards = document.querySelectorAll('.flip-card');
+    
+    flipCards.forEach(card => {
+        // Click to flip on mobile (hover doesn't work well on touch devices)
+        card.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                this.querySelector('.flip-card-inner').classList.toggle('flipped');
+            }
+        });
+        
+        // For accessibility - allow keyboard navigation
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.querySelector('.flip-card-inner').classList.toggle('flipped');
+            }
+        });
+    });
+}
+
+// Call this in your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    initFlipCards();
+});
+// Experience Modal Functionality
+function initExperienceModals() {
+    const expCards = document.querySelectorAll('.exp-card');
+    const modals = document.querySelectorAll('.experience-modal');
+    const backLinks = document.querySelectorAll('.back-link');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    // Open modal when clicking a card
+    expCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        });
+    });
+
+    // Close modal with back link
+    backLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllModals();
+        });
+    });
+
+    // Close modal with close button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeAllModals();
+        });
+    });
+
+    // Close modal when clicking outside content
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAllModals();
+            }
+        });
+    });
+
+    // Close all modals and re-enable scrolling
+    function closeAllModals() {
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+    }
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+}
+
+// Call this in your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    initExperienceModals();
+    initFlipCards(); // Keep your flip cards initialization
+});
