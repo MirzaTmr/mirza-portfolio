@@ -317,3 +317,191 @@ document.addEventListener('DOMContentLoaded', function() {
     initExperienceModals();
     initFlipCards();
 });
+
+// Replace your initExperienceModals function with this version
+function initExperienceModals() {
+    const expCards = document.querySelectorAll('.exp-card');
+    const modals = document.querySelectorAll('.experience-modal');
+    const backLinks = document.querySelectorAll('.back-link');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    // Open modal when clicking a card
+    expCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Force redraw for mobile browsers
+                modal.style.display = 'none';
+                modal.offsetHeight;
+                modal.style.display = 'flex';
+                
+                // Focus for accessibility
+                modal.focus();
+            }
+        });
+    });
+
+    // Close modal with back link
+    backLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllModals();
+        });
+    });
+
+    // Close modal with close button - fixed version
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from reaching modal
+            closeAllModals();
+        }, true); // Use capturing phase to ensure event fires
+    });
+
+    // Close modal when clicking outside content
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAllModals();
+            }
+        });
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+
+    // Close all modals and re-enable scrolling
+    function closeAllModals() {
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+    }
+
+    // iOS viewport height fix
+    function setModalHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        
+        modals.forEach(modal => {
+            if (modal.classList.contains('active')) {
+                const modalContent = modal.querySelector('.modal-container');
+                if (modalContent) {
+                    modalContent.style.maxHeight = `${window.innerHeight * 0.85}px`;
+                }
+            }
+        });
+    }
+
+    // Initialize and listen for resize
+    setModalHeight();
+    window.addEventListener('resize', setModalHeight);
+    window.addEventListener('orientationchange', setModalHeight);
+}
+
+// Update the initExperienceModals function in script.js
+function initExperienceModals() {
+    const expCards = document.querySelectorAll('.exp-card');
+    const modals = document.querySelectorAll('.experience-modal');
+    const backLinks = document.querySelectorAll('.back-link');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    // Open modal when clicking a card
+    expCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            
+            if (modal) {
+                // Close any open modals first
+                closeAllModals();
+                
+                // Open new modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // iOS viewport height fix
+                setTimeout(() => {
+                    const modalContent = modal.querySelector('.modal-container');
+                    if (modalContent) {
+                        const vh = window.innerHeight * 0.01;
+                        document.documentElement.style.setProperty('--vh', `${vh}px`);
+                        modalContent.style.maxHeight = `${window.innerHeight * 0.8}px`;
+                    }
+                }, 50);
+            }
+        });
+    });
+
+    // Close modal handlers
+    backLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllModals();
+        });
+    });
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeAllModals();
+        }, true);
+    });
+
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAllModals();
+            }
+        });
+        
+        // Prevent background scrolling when modal is open
+        modal.addEventListener('touchmove', function(e) {
+            if (this.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+
+    function closeAllModals() {
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+    }
+
+    // Handle viewport changes
+    function handleViewportChanges() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        
+        modals.forEach(modal => {
+            if (modal.classList.contains('active')) {
+                const modalContent = modal.querySelector('.modal-container');
+                if (modalContent) {
+                    modalContent.style.maxHeight = `${window.innerHeight * 0.8}px`;
+                }
+            }
+        });
+    }
+
+    // Initialize and set up listeners
+    handleViewportChanges();
+    window.addEventListener('resize', handleViewportChanges);
+    window.addEventListener('orientationchange', handleViewportChanges);
+}
