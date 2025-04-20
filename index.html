@@ -91,56 +91,110 @@
 </section>
 
     <section id="projects" class="fade-scroll">
-        <h2><span class="section-spark">Featured Projects</span></h2>
-        
-        <div class="project-card" onclick="void(0)">
-            <div class="project-header">
-                <h3>Polymorphic Traffic Flow Management System - Personal Project | St. John's, NL</h3>
-                <div class="tech-tags">
-                    <span>MATLAB, C++</span>
-                    <span>Multiplexers, D-flip-flops</span>
-                    <span>LEDs, Resistors</span>
+    <h2><span class="section-spark">Featured Projects</span></h2>
+    
+    <div class="projects-container">
+        <!-- Project 1 - Adaptive Traffic System -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('IMG_7565.JPG'); background-size: cover; background-position: center;">
+                    <div class="project-front-content">
+                        <h3>Adaptive Traffic Control System</h3>
+                        <div class="tech-tags">
+                            <span>C++</span>
+                            <span>Synchronization</span>
+                            <span>Arduino</span>
+                        </div>
+                        <div class="flip-hint">Click to flip</div>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="project-back-content">
+                        <h3>Adaptive Traffic Flow Management System</h3>
+                        <div class="project-details">
+                            <ul>
+                                <li>Developed an adaptive traffic light controller using finite state machine principles in C++</li>
+                                <li>Engineered a 6-state Moore Machine architecture (vehicle/pedestrian signal coordination)</li>
+                                <li>Implemented recursive timing algorithms that reduced peak-hour wait times by 40%</li>
+                                <li>Prototyped with digital logic ICs (multiplexers, D-flip-flops)</li>
+                                <li>Achieved less than 50ms state transitions with 100% synchronization accuracy</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MirzaTmr/Adaptive-Traffic-Control-System" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="project-content">
-                <ul>
-                    <li>Developed an adaptive traffic light controller using finite state machine principles in C++</li>
-                    <li>Engineered a 6-state Moore Machine architecture (vehicle/pedestrian signal coordination)</li>
-                    <li>Implemented recursive timing algorithms that reduced peak-hour wait times by 40%</li>
-                    <li>Prototyped with digital logic ICs (multiplexers, D-flip-flops) and validated through 30 simulation cycles</li>
-                    <li>Achieved less than 50ms state transitions with 100% synchronization accuracy in hardware tests</li>
-                </ul>
-                <a href="https://github.com/MirzaTmr" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
-            </div>
-            <div class="circuit-overlay"></div>
         </div>
-        
-        <div class="project-card" onclick="void(0)">
-            <div class="project-header">
-                <h3>Arduino Music Encryptor System – Verafin Competition | Memorial University</h3>
-                <div class="tech-tags">
-                    <span>Arduino</span>
-                    <span>Python</span>
-                    <span>WLAN</span>
+
+        <!-- Project 2 - Dynamic Resonance Tuner -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('logo_L42.png'); background-size: 130%; background-repeat: no-repeat; background-position: center;">
+                    <div class="project-front-content">
+                        <h3>Dynamic Resonance Tuner</h3>
+                        <div class="tech-tags">
+                            <span>MATLAB</span>
+                            <span>SPICE</span>
+                            <span>Circuit Design</span>
+                        </div>
+                        <div class="flip-hint">Click to flip</div>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="project-back-content">
+                        <h3>Dynamic Resonance Tuner</h3>
+                        <div class="project-details">
+                            <ul>
+                                <li>A SPICE simulation-powered system that dynamically optimizes passive component values</li>
+                                <li>Developed an algorithm using inductors, capacitors, and 47–220Ω resistors</li>
+                                <li>Automated damping ratio calculation (under/critical/over-damped)</li>
+                                <li>Achieved 35% faster settling times with parameter optimization</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MirzaTmr" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="project-content">
-                <ul>
-                    <li>Designed a musical cryptography device using Python/Jython for sensor-based data encryption<li>
-                    <li>Developed sensor-based encryption system with 98% reliability for secure communication</li>
-                    <li>Implemented WLAN compatibility through cross-platform debugging</li>
-                    <li>Validated cross-platform functionality across Arduino IDE, PyCharm, and Anaconda environments</li>
-                    <li>Developed rotary encoder input handling with 12-TET musical note calibration (A1=55Hz reference)</li>
-                </ul>
-                <a href="https://github.com/MirzaTmr/Arduino-Music-Encryptor" target="_blank" class="project-link">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
-            </div>
-            <div class="circuit-overlay"></div>
         </div>
-    </section>
+
+        <!-- Project 3 - Arduino Music Encryptor -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('2e9808a6-d8dd-484c-97d5-3aa9da71a27e.jpg'); background-size: cover; background-position: center;">
+                    <div class="project-front-content">
+                        <h3>Arduino Music Encryptor</h3>
+                        <div class="tech-tags">
+                            <span>Arduino</span>
+                            <span>Python</span>
+                            <span>Cryptography</span>
+                        </div>
+                        <div class="flip-hint">Click to flip</div>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="project-back-content">
+                        <h3>Arduino Music Encryptor System</h3>
+                        <div class="project-details">
+                            <ul>
+                                <li>Designed a musical cryptography device using Python/Jython</li>
+                                <li>Developed sensor-based encryption system with 98% reliability</li>
+                                <li>Implemented WLAN compatibility through cross-platform debugging</li>
+                                <li>Validated cross-platform functionality across multiple IDEs</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MirzaTmr/Arduino-Music-Encryptor" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     
     <section id="skills" class="fade-scroll">
         <h2><span class="section-spark">Technical Skills</span></h2>
@@ -188,87 +242,172 @@
         <h2><span class="section-spark">Professional Experience</span></h2>
         
         <div class="experience-container">
-            <div class="experience-item">
-                <div class="experience-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                    <div class="experience-bg" style="background-image: url('https://images.squarespace-cdn.com/content/v1/5ecb0bfadd255c127a746499/b5c02068-f008-4584-a5f7-629ce1221231/eastern-edge-robotics-logo.png')"></div>
-                    <div class="experience-content">
-                        <div class="experience-date">April 2025 - Present</div>
-                        <h3>Power Electronics Lead | Eastern Edge Robotics</h3>
-                        <ul>
-                            <li>Designed underwater ocean monitoring system for MATE ROV competition</li>
-                            <li>Configured lithium battery arrays reducing heat generation by 30%</li>
-                            <li>Maintained 98% data accuracy with waterproofed sensors</li>
-                        </ul>
+            <!-- Eastern Edge Robotics -->
+            <div class="exp-card" data-target="eastern-edge-modal">
+                <div class="exp-card-front" style="background-image: url('https://images.squarespace-cdn.com/content/v1/5ecb0bfadd255c127a746499/b5c02068-f008-4584-a5f7-629ce1221231/eastern-edge-robotics-logo.png'); background-color: white; background-size: 70%; background-repeat: no-repeat; background-position: center;">
+                    <div class="exp-front-content">
+                        <h3>Power Electronics Lead</h3>
+                        <div class="exp-date">April 2025 - Present</div>
+                        <div class="click-hint">Click for details →</div>
                     </div>
                 </div>
-            <div class="experience-item">
-                <div class="experience-icon">
-                    <i class="fas fa-store"></i>
-                </div>
-                <div class="experience-content">
-                    <div class="experience-date">Oct 2023 - Present</div>
-                    <h3>Operations Manager | Banana Republic | St. John's, NL, Canada</h3>
-                    <ul>
-                        <li>Promoted from Sales Specialist to oversee all store inventory operations including shipment processing, configuration, and tracking, ensuring seamless operations</li>
-                        <li>Designed and implemented organizational plans that optimized workflow and improved accessibility</li>
-                        <li>Led a team of associates through performance management to achieve operational excellence and meet KPIs</li>
-                        <li>Automated inventory tracking using SQL queries and Excel macros (VLOOKUP/PivotTables), reducing processing time by 30%</li>
-                        <li>Optimized team workflows, improving operational efficiency by 50% through process redesign</li>
-                    </ul>
+            </div>
+            
+            <!-- Banana Republic -->
+            <div class="exp-card" data-target="banana-republic-modal">
+                <div class="exp-card-front" style="background-image: url('Banana-Republic-Logo.png'); background-color: white; background-size: 70%; background-repeat: no-repeat; background-position: center;">
+                    <div class="exp-front-content">
+                        <h3>Operations Manager</h3>
+                        <div class="exp-date">Oct 2023 - Present</div>
+                        <div class="click-hint">Click for details →</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="experience-item">
-                <div class="experience-icon">
-                    <i class="fas fa-snowboarding"></i>
+            <!-- Canada Games -->
+            <div class="exp-card" data-target="canada-games-modal">
+                <div class="exp-card-front" style="background-image: url('63ecaefb43d01832674522e9_StJohns2025-hero.png'); background-color: white; background-size: 70%; background-repeat: no-repeat; background-position: center;">
+                    <div class="exp-front-content">
+                        <h3>Technical Lead</h3>
+                        <div class="exp-date">April 2024 - Present</div>
+                        <div class="click-hint">Click for details →</div>
+                    </div>
                 </div>
-                <div class="experience-content">
-                    <div class="experience-date">Dec 2023 - Feb 2024</div>
-                    <h3>Design Lead | MUN Concrete Toboggan | St. John's, NL, Canada</h3>
-                    <ul>
-                        <li>Collaborated with multidisciplinary team to integrate ergonomic and aerodynamic improvements</li>
-                        <li>Ensured compliance with safety and competition regulations through load-bearing calculations and risk assessments</li>
-                        <li>Documented design iterations and test results to refine manufacturing processes</li>
-                        <li>Led structural design evaluation using AutoCAD, achieving 3rd place in national competition</li>
-                        <li>Prototyped load-bearing components, reducing material waste by 15% through iterative testing</li>
-                        <li>Programmed Arduino-based strain gauges on 1:8 scale model to monitor structural integrity</li>
-                    </ul>
+            </div>
+    
+            <!-- MUN Concrete Toboggan -->
+            <div class="exp-card" data-target="mun-toboggan-modal">
+                <div class="exp-card-front" style="background-image: url('245954035_102670728873663_772209247307635178_n.jpg'); background-color: #0a2240; background-size: 70%; background-repeat: no-repeat; background-position: center;">
+                    <div class="exp-front-content">
+                        <h3>Design Lead</h3>
+                        <div class="exp-date">Dec 2023 - Feb 2024</div>
+                        <div class="click-hint">Click for details →</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="experience-item">
-                <div class="experience-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="experience-content">
-                    <div class="experience-date">July - Sept 2023</div>
-                    <h3>Marketing Intern | Mulk International | Ajman, UAE</h3>
-                    <ul>
-                        <li>Presented marketing sector to potential clients, expanding network to 70+ countries including USA and Canada</li>
-                        <li>Managed invoices and payrolls for global organizations including Emaar and Majid Al Futtaim</li>
-                        <li>Enhanced client outreach through digital marketing campaigns and international conferences</li>
-                        <li>Developed automated reporting tools in Excel (Power Query) for logistics data analysis</li>
-                        <li>Documented electrical safety protocols for on-site power tool operations (OSHA standards)</li>
-                    </ul>
+            <!-- Mulk International -->
+            <div class="exp-card" data-target="mulk-modal">
+                <div class="exp-card-front" style="background-image: url('unnamed.jpg'); background-color: white; background-size: 70%; background-repeat: no-repeat; background-position: center;">
+                    <div class="exp-front-content">
+                        <h3>Marketing Intern</h3>
+                        <div class="exp-date">July - Sept 2023</div>
+                        <div class="click-hint">Click for details →</div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="experience-item">
-                <div class="experience-icon">
-                    <i class="fas fa-home"></i>
-                </div>
-                <div class="experience-content">
-                    <div class="experience-date">Aug 2022 - Jan 2023</div>
-                    <h3>Sales Intern | GoldCrest Real Estate | Ajman, UAE</h3>
-                    <ul>
-                        <li>Identified and achieved monthly sales targets by converting cold leads into hot leads</li>
-                        <li>Researched market trends to improve lead conversion, resulting in surplus sales</li>
-                        <li>Managed digital marketing campaigns through online real estate publishers</li>
-                    </ul>
-                </div>
+        </div>
+    </section>
+    
+    <!-- Experience Modals -->
+    <div id="eastern-edge-modal" class="experience-modal">
+        <div class="modal-container">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h3>Power Electronics Lead <span class="company-name">@ Eastern Edge Robotics</span></h3>
+            <div class="exp-date">April 2025 - Present</div>
+            <div class="modal-exp-details">
+                <ul>
+                    <li>Designed underwater ocean monitoring system for MATE ROV competition</li>
+                    <li>Configured lithium battery arrays reducing heat generation by 30%</li>
+                    <li>Maintained 98% data accuracy with waterproofed sensors</li>
+                    <li>Implemented IEEE standards for power system design</li>
+                    <li>Developed custom power distribution network for ROV subsystems</li>
+                    <li>Optimized energy consumption for 12-hour continuous operation</li>
+                </ul>
             </div>
+            <button class="back-link">← Back to Experience</button>
+        </div>
+    </div>
+    
+    <div id="banana-republic-modal" class="experience-modal">
+        <div class="modal-container">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h3>Operations Manager <span class="company-name">@ Banana Republic</span></h3>
+            <div class="exp-date">Oct 2023 - Present</div>
+            <div class="modal-exp-details">
+                <ul>
+                    <li>Promoted from Sales Specialist to oversee all store inventory operations</li>
+                    <li>Automated inventory tracking using SQL queries and Excel macros, reducing processing time by 30%</li>
+                    <li>Optimized team workflows, improving efficiency by 50% through process redesign</li>
+                    <li>Led a team of 12 associates through performance management to achieve operational KPIs</li>
+                    <li>Implemented visual merchandising strategies that increased sales by 15%</li>
+                    <li>Developed training programs for new hires, reducing onboarding time by 25%</li>
+                </ul>
+            </div>
+            <button class="back-link">← Back to Experience</button>
+        </div>
+    </div>
+    
+    <div id="canada-games-modal" class="experience-modal">
+        <div class="modal-container">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h3>Technical Lead <span class="company-name">@ Canada Games 2025</span></h3>
+            <div class="exp-date">April 2024 - Present</div>
+            <div class="modal-exp-details">
+                <ul>
+                    <li>Deployment of 200+ secure device connections for 200K+ participants, ensuring 99.9% uptime and system reliability</li>
+                    <li>Managing data security, and seamless operations through robust protocols</li>
+                    <li>Collaboration with cross-functional teams to optimize network performance, reducing latency by 25% during peaks</li>
+                    <li>Leading planning sessions to delegate AOR tasks (device deployment, troubleshooting protocols), reducing execution delays through milestone tracking</li>
+                </ul>
+            </div>
+            <button class="back-link">← Back to Experience</button>
+        </div>
+    </div>
+    
+    <div id="mun-toboggan-modal" class="experience-modal">
+        <div class="modal-container">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h3>Design Lead <span class="company-name">@ MUN Concrete Toboggan</span></h3>
+            <div class="exp-date">Dec 2023 - Feb 2024</div>
+            <div class="modal-exp-details">
+                <ul>
+                    <li>Led structural design evaluation using AutoCAD, achieving 3rd place in national competition</li>
+                    <li>Prototyped load-bearing components, reducing material waste by 15% through iterative testing</li>
+                    <li>Programmed Arduino-based strain gauges on 1:8 scale model to monitor structural integrity</li>
+                    <li>Collaborated with 15-member multidisciplinary team on ergonomic improvements</li>
+                    <li>Conducted finite element analysis to optimize weight distribution</li>
+                    <li>Documented design process for future team reference</li>
+                </ul>
+            </div>
+            <button class="back-link">← Back to Experience</button>
+        </div>
+    </div>
+    
+    <div id="mulk-modal" class="experience-modal">
+        <div class="modal-container">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h3>Marketing Intern <span class="company-name">@ Mulk International</span></h3>
+            <div class="exp-date">July - Sept 2023</div>
+            <div class="modal-exp-details">
+                <ul>
+                    <li>Presented marketing sector to potential clients in 70+ countries including USA and Canada</li>
+                    <li>Managed invoices and payrolls for global organizations including Emaar and Majid Al Futtaim</li>
+                    <li>Enhanced client outreach through digital marketing campaigns and international conferences</li>
+                    <li>Developed automated reporting tools in Excel (Power Query) for logistics data analysis</li>
+                    <li>Created presentation materials that helped secure $2M in new contracts</li>
+                    <li>Documented electrical safety protocols for on-site power tool operations (OSHA standards)</li>
+                </ul>
+            </div>
+            <button class="back-link">← Back to Experience</button>
+        </div>
+    </div>
+    
+    <section id="mulk-details" class="experience-details">
+        <div class="details-container">
+            <h3>Marketing Intern <span class="company-name">@ Mulk International</span></h3>
+            <div class="exp-date">July - Sept 2023</div>
+            <div class="exp-details">
+                <ul>
+                    <li>Presented marketing sector to potential clients in 70+ countries including USA and Canada</li>
+                    <li>Managed invoices and payrolls for global organizations including Emaar and Majid Al Futtaim</li>
+                    <li>Enhanced client outreach through digital marketing campaigns and international conferences</li>
+                    <li>Developed automated reporting tools in Excel (Power Query) for logistics data analysis</li>
+                    <li>Created presentation materials that helped secure $2M in new contracts</li>
+                    <li>Documented electrical safety protocols for on-site power tool operations (OSHA standards)</li>
+                </ul>
+            </div>
+            <a href="#experience" class="back-link">← Back to Experience</a>
         </div>
     </section>
 
@@ -296,6 +435,7 @@
     
     <footer>
         <p>© 2025 Mirza Taimur Ali Baig | Electrical Engineering Portfolio</p>
+        <p>P.S This entire site was made using HTML & CSS + JS</p>
         <div class="circuit-line"></div>
     </footer>
     
