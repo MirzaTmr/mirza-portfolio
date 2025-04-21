@@ -1691,137 +1691,98 @@ footer {
     pointer-events: auto; /* Enable when active */
 }
 
-/* Add these to your styles.css */
-
-/* Mobile-first experience section */
+/* Mobile Experience Section - Working Accordion */
 @media (max-width: 768px) {
     .experience-container {
         display: block;
-        margin-top: 20px;
     }
 
     .exp-card {
-        height: auto;
-        min-height: 80px;
-        margin-bottom: 15px;
+        background: var(--card-bg);
         border-radius: 8px;
+        margin-bottom: 15px;
         overflow: hidden;
-        background-color: var(--card-bg);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .exp-card-front {
+    .exp-card-header {
+        padding: 15px;
         display: flex;
         align-items: center;
-        padding: 15px;
-        background-size: 40px;
-        background-position: 15px center;
-        background-repeat: no-repeat;
-        position: relative;
         cursor: pointer;
-    }
-
-    .exp-card-front::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
-
-    .exp-front-content {
         position: relative;
-        z-index: 2;
-        flex-grow: 1;
-        padding-left: 60px;
     }
 
-    .exp-card-front h3 {
+    .exp-card-logo {
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .exp-card-text {
+        flex-grow: 1;
+    }
+
+    .exp-card h3 {
+        margin: 0;
         font-size: 1rem;
-        margin-bottom: 5px;
-        color: white;
+        color: var(--text-color);
     }
 
     .exp-date {
         font-size: 0.8rem;
         color: var(--primary);
+        margin-top: 3px;
     }
 
-    .click-hint {
-        display: none;
-    }
-
-    /* Chevron indicator */
-    .exp-card-front::after {
-        content: '\f078';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: white;
+    .exp-card-arrow {
+        margin-left: 10px;
         transition: transform 0.3s ease;
-        z-index: 2;
+        color: var(--primary);
     }
 
-    .exp-card.active .exp-card-front::after {
-        transform: translateY(-50%) rotate(180deg);
+    .exp-card.active .exp-card-arrow {
+        transform: rotate(180deg);
     }
 
-    /* Experience details - initially hidden */
-    .exp-details-mobile {
+    .exp-card-content {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
         padding: 0 15px;
-        background-color: rgba(0, 170, 255, 0.05);
+        background: rgba(0,0,0,0.05);
     }
 
-    .exp-card.active .exp-details-mobile {
-        max-height: 1000px; /* Adjust based on your content */
+    .exp-card.active .exp-card-content {
+        max-height: 1000px;
         padding: 15px;
     }
 
-    .exp-details-mobile ul {
+    .exp-card-content ul {
         list-style: none;
         padding-left: 0;
     }
 
-    .exp-details-mobile li {
+    .exp-card-content li {
         position: relative;
         padding-left: 20px;
         margin-bottom: 10px;
         font-size: 0.9rem;
-        line-height: 1.5;
     }
 
-    .exp-details-mobile li::before {
-        content: '→';
+    .exp-card-content li::before {
+        content: "→";
         color: var(--primary);
         position: absolute;
         left: 0;
     }
 
-    /* Hide modals on mobile */
+    /* Hide desktop modals on mobile */
     .experience-modal {
         display: none !important;
-    }
-}
-
-/* Desktop styles */
-@media (min-width: 769px) {
-    /* Hide mobile details on desktop */
-    .exp-details-mobile {
-        display: none;
-    }
-    
-    /* Ensure desktop modals work */
-    .experience-modal {
-        display: flex;
     }
 }
