@@ -1691,97 +1691,107 @@ footer {
     pointer-events: auto; /* Enable when active */
 }
 
-/* Mobile Experience Section - Working Accordion */
+/* Mobile Experience Accordion */
+.exp-accordion {
+    background: var(--card-bg);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.exp-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.exp-header:hover {
+    background: rgba(0,170,255,0.1);
+}
+
+.exp-logo {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.exp-title {
+    flex-grow: 1;
+}
+
+.exp-accordion h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.exp-date {
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-top: 5px;
+}
+
+.exp-arrow {
+    margin-left: 10px;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.exp-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 20px;
+    background: rgba(0,0,0,0.05);
+}
+
+.exp-accordion.active .exp-content {
+    max-height: 1000px;
+    padding: 0 20px 20px;
+}
+
+.exp-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.exp-content li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.exp-content li::before {
+    content: "→";
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+}
+
+.exp-accordion.active .exp-arrow {
+    transform: rotate(180deg);
+}
+
+/* Desktop - Hide accordion and show modals */
+@media (min-width: 769px) {
+    .exp-accordion {
+        display: none;
+    }
+    
+    /* Keep your existing desktop modal styles */
+}
+
+/* Mobile - Hide modals and show accordion */
 @media (max-width: 768px) {
-    .experience-container {
-        display: block;
-    }
-
-    .exp-card {
-        background: var(--card-bg);
-        border-radius: 8px;
-        margin-bottom: 15px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .exp-card-header {
-        padding: 15px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        position: relative;
-    }
-
-    .exp-card-logo {
-        width: 40px;
-        height: 40px;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        margin-right: 15px;
-        flex-shrink: 0;
-    }
-
-    .exp-card-text {
-        flex-grow: 1;
-    }
-
-    .exp-card h3 {
-        margin: 0;
-        font-size: 1rem;
-        color: var(--text-color);
-    }
-
-    .exp-date {
-        font-size: 0.8rem;
-        color: var(--primary);
-        margin-top: 3px;
-    }
-
-    .exp-card-arrow {
-        margin-left: 10px;
-        transition: transform 0.3s ease;
-        color: var(--primary);
-    }
-
-    .exp-card.active .exp-card-arrow {
-        transform: rotate(180deg);
-    }
-
-    .exp-card-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        padding: 0 15px;
-        background: rgba(0,0,0,0.05);
-    }
-
-    .exp-card.active .exp-card-content {
-        max-height: 1000px;
-        padding: 15px;
-    }
-
-    .exp-card-content ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .exp-card-content li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
-    }
-
-    .exp-card-content li::before {
-        content: "→";
-        color: var(--primary);
-        position: absolute;
-        left: 0;
-    }
-
-    /* Hide desktop modals on mobile */
     .experience-modal {
         display: none !important;
     }
