@@ -407,101 +407,95 @@ function initExperienceModals() {
     window.addEventListener('orientationchange', setModalHeight);
 }
 
-// Update the initExperienceModals function in script.js
+// Replace your experience modal initialization with this
 function initExperienceModals() {
-    const expCards = document.querySelectorAll('.exp-card');
-    const modals = document.querySelectorAll('.experience-modal');
-    const backLinks = document.querySelectorAll('.back-link');
-    const closeButtons = document.querySelectorAll('.close-modal');
+    // Desktop functionality remains the same
+    if (window.innerWidth > 768) {
+        const expCards = document.querySelectorAll('.exp-card');
+        const modals = document.querySelectorAll('.experience-modal');
+        const backLinks = document.querySelectorAll('.back-link');
+        const closeButtons = document.querySelectorAll('.close-modal');
 
-    // Open modal when clicking a card
-    expCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const modal = document.getElementById(targetId);
-            
-            if (modal) {
-                // Close any open modals first
-                closeAllModals();
+        // Desktop modal logic (same as before)
+        expCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const modal = document.getElementById(targetId);
                 
-                // Open new modal
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // iOS viewport height fix
-                setTimeout(() => {
-                    const modalContent = modal.querySelector('.modal-container');
-                    if (modalContent) {
-                        const vh = window.innerHeight * 0.01;
-                        document.documentElement.style.setProperty('--vh', `${vh}px`);
-                        modalContent.style.maxHeight = `${window.innerHeight * 0.8}px`;
-                    }
-                }, 50);
-            }
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    modal.focus();
+                }
+            });
         });
-    });
 
-    // Close modal handlers
-    backLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeAllModals();
-        });
-    });
-
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeAllModals();
-        }, true);
-    });
-
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAllModals();
-            }
-        });
-        
-        // Prevent background scrolling when modal is open
-        modal.addEventListener('touchmove', function(e) {
-            if (this.classList.contains('active')) {
+        // Close handlers (same as before)
+        backLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-            }
-        }, { passive: false });
-    });
+                closeAllModals();
+            });
+        });
 
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeAllModals();
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeAllModals();
+            }, true);
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAllModals();
+                }
+            });
+        });
+
+        function closeAllModals() {
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+    } 
+    // Mobile functionality - accordion style
+    else {
+        const expCards = document.querySelectorAll('.exp-card');
+        
+        expCards.forEach(card => {
+            // Create mobile details container
+            const targetId = card.getAttribute('data-target');
+            const modal = document.getElementById(targetId);
+            if (modal) {
+                const detailsContent = modal.querySelector('.modal-exp-details').cloneNode(true);
+                detailsContent.classList.add('exp-details-mobile');
+                card.appendChild(detailsContent);
+            }
+
+            // Toggle accordion
+            card.addEventListener('click', function() {
+                this.classList.toggle('active');
+                
+                // Close other open cards
+                expCards.forEach(otherCard => {
+                    if (otherCard !== this && otherCard.classList.contains('active')) {
+                        otherCard.classList.remove('active');
+                    }
+                });
+            });
+        });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            // Ensure modals are hidden on mobile
+            document.querySelectorAll('.experience-modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = '';
         }
     });
-
-    function closeAllModals() {
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        document.body.style.overflow = '';
-    }
-
-    // Handle viewport changes
-    function handleViewportChanges() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        
-        modals.forEach(modal => {
-            if (modal.classList.contains('active')) {
-                const modalContent = modal.querySelector('.modal-container');
-                if (modalContent) {
-                    modalContent.style.maxHeight = `${window.innerHeight * 0.8}px`;
-                }
-            }
-        });
-    }
-
-    // Initialize and set up listeners
-    handleViewportChanges();
-    window.addEventListener('resize', handleViewportChanges);
-    window.addEventListener('orientationchange', handleViewportChanges);
 }
