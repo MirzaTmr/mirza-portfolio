@@ -1,8 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality
+/**
+ * Mirza Taimur Ali Baig - Electrical Engineering Portfolio
+ * Complete JavaScript Implementation
+ */
+
+ document.addEventListener('DOMContentLoaded', function() {
+    // =============================================
+    // Theme Toggle Functionality
+    // =============================================
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
     themeToggle.innerHTML = '<i class="fas fa-adjust"></i>';
+    themeToggle.setAttribute('aria-label', 'Toggle dark/light mode');
     document.body.appendChild(themeToggle);
 
     // Check for saved theme preference or use preferred color scheme
@@ -21,11 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
-        // Apply new theme
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
-        // Update icon with animation
         updateThemeIcon(newTheme, true);
     });
 
@@ -40,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             : '<i class="fas fa-sun"></i>';
     }
 
-    // Smooth scrolling for navigation
+    // =============================================
+    // Navigation Smooth Scrolling
+    // =============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -50,11 +57,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth',
                     block: 'start'
                 });
+                
+                // Update URL without page jump
+                if (history.pushState) {
+                    history.pushState(null, null, this.getAttribute('href'));
+                } else {
+                    location.hash = this.getAttribute('href');
+                }
             }
         });
     });
 
-    // Scroll animations
+    // =============================================
+    // Scroll Animations
+    // =============================================
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -66,12 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -100px 0px'
     });
 
-    // Observe all scrollable elements
-    document.querySelectorAll('.fade-scroll, .experience-item').forEach(element => {
+    document.querySelectorAll('.fade-scroll').forEach(element => {
         observer.observe(element);
     });
 
-    // Typewriter effect for header
+    // =============================================
+    // Typewriter Effect
+    // =============================================
     const typewriter = document.querySelector('.typewriter');
     if (typewriter) {
         const text = "Term-4 Electrical Engineering Co-op Undergrad @ Memorial University of Newfoundland";
@@ -82,22 +99,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (i < text.length) {
                 typewriter.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, Math.random() * 50 + 30); // Random speed for natural effect
             } else {
                 typewriter.style.borderRight = 'none';
             }
         }
         
-        // Start typing after a short delay
         setTimeout(typeWriter, 1000);
     }
 
-    // Terminal typing effect
-    initTerminal();
-});
-
-// Terminal typing effect
-function initTerminal() {
+    // =============================================
+    // Terminal Typing Effect
+    // =============================================
     const commands = document.querySelectorAll('.command-line');
     commands.forEach((cmd, index) => {
         cmd.style.animationDelay = `${index * 0.3}s`;
@@ -111,19 +124,170 @@ function initTerminal() {
                 if (i < text.length) {
                     command.textContent += text.charAt(i);
                     i++;
-                    setTimeout(typeCommand, 50);
+                    setTimeout(typeCommand, Math.random() * 40 + 30);
                 }
             }
             setTimeout(typeCommand, index * 500);
         }
     });
-}
-// Add this to your existing script.js
-function initFlipCards() {
+
+    // =============================================
+    // Experience Section - Dual Mobile/Desktop
+    // =============================================
+    function initExperienceSection() {
+        // Mobile view (accordions)
+        if (window.innerWidth <= 768) {
+            const accordions = document.querySelectorAll('.exp-accordion');
+            
+            accordions.forEach(accordion => {
+                const header = accordion.querySelector('.exp-header');
+                const content = accordion.querySelector('.exp-content');
+                
+                // Initialize as closed
+                content.style.maxHeight = '0';
+                content.style.overflow = 'hidden';
+                content.style.transition = 'max-height 0.3s ease';
+                
+                header.addEventListener('click', function() {
+                    // Toggle current accordion
+                    const isOpening = !accordion.classList.contains('active');
+                    accordion.classList.toggle('active');
+                    
+                    if (isOpening) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0';
+                    }
+                    
+                    // Close other open accordions
+                    accordions.forEach(otherAcc => {
+                        if (otherAcc !== accordion && otherAcc.classList.contains('active')) {
+                            otherAcc.classList.remove('active');
+                            otherAcc.querySelector('.exp-content').style.maxHeight = '0';
+                        }
+                    });
+                });
+            });
+        } 
+        // Desktop view (modals)
+        else {
+            const expCards = document.querySelectorAll('.exp-card');
+            const modals = document.querySelectorAll('.experience-modal');
+            const backLinks = document.querySelectorAll('.back-link');
+            const closeButtons = document.querySelectorAll('.close-modal');
+
+            // Open modal when clicking a card
+            expCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent accidental clicks on child elements
+                    if (e.target.closest('a')) return;
+                    
+                    const targetId = this.getAttribute('data-target');
+                    const modal = document.getElementById(targetId);
+                    
+                    if (modal) {
+                        // Close any open modals first
+                        closeAllModals();
+                        
+                        // Open new modal
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px'; // Prevent scrollbar jump
+                        
+                        // Focus trap for accessibility
+                        trapFocus(modal);
+                    }
+                });
+            });
+
+            // Close modal with back link
+            backLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    closeAllModals();
+                });
+            });
+
+            // Close modal with close button
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeAllModals();
+                }, true); // Use capturing phase
+            });
+
+            // Close modal when clicking outside content
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeAllModals();
+                    }
+                });
+            });
+
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAllModals();
+                }
+            });
+
+            // Close all modals and re-enable scrolling
+            function closeAllModals() {
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            }
+
+            // Focus trap for accessibility
+            function trapFocus(modal) {
+                const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                modal.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            }
+                        } else {
+                            if (document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    }
+                });
+                
+                firstElement.focus();
+            }
+        }
+    }
+
+    // Initialize experience section
+    initExperienceSection();
+
+    // Handle window resize between mobile/desktop
+    window.addEventListener('resize', function() {
+        // Only reload if crossing the mobile/desktop threshold
+        const wasMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 768;
+        
+        if (wasMobile !== isMobile) {
+            location.reload();
+        }
+    });
+
+    // =============================================
+    // Project Flip Cards
+    // =============================================
     const flipCards = document.querySelectorAll('.flip-card');
-    
     flipCards.forEach(card => {
-        // Click to flip on mobile (hover doesn't work well on touch devices)
+        // Click to flip on mobile
         card.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
                 this.querySelector('.flip-card-inner').classList.toggle('flipped');
@@ -138,351 +302,70 @@ function initFlipCards() {
             }
         });
     });
-}
 
-// Call this in your DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', function() {
-    // ... your existing code ...
-    
-    initFlipCards();
-});
-// Experience Modal Functionality
-function initExperienceModals() {
-    const expCards = document.querySelectorAll('.exp-card');
-    const modals = document.querySelectorAll('.experience-modal');
-    const backLinks = document.querySelectorAll('.back-link');
-    const closeButtons = document.querySelectorAll('.close-modal');
-
-    // Open modal when clicking a card
-    expCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const modal = document.getElementById(targetId);
-            
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            }
-        });
-    });
-
-    // Close modal with back link
-    backLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // =============================================
+    // Contact Form Handling (if you add one later)
+    // =============================================
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            closeAllModals();
-        });
-    });
-
-    // Close modal with close button
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            closeAllModals();
-        });
-    });
-
-    // Close modal when clicking outside content
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAllModals();
-            }
-        });
-    });
-
-    // Close all modals and re-enable scrolling
-    function closeAllModals() {
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        document.body.style.overflow = '';
-    }
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeAllModals();
-        }
-    });
-}
-
-// Call this in your DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', function() {
-    // ... your existing code ...
-    
-    initExperienceModals();
-    initFlipCards(); // Keep your flip cards initialization
-});
-// Enhanced Experience Modals with Touch Support
-function initExperienceModals() {
-    const expCards = document.querySelectorAll('.exp-card');
-    const modals = document.querySelectorAll('.experience-modal');
-    const backLinks = document.querySelectorAll('.back-link');
-    const closeButtons = document.querySelectorAll('.close-modal');
-
-    // Track touch start position
-    let touchStartY = 0;
-
-    // Open modal when clicking/tapping a card
-    expCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Prevent accidental clicks while scrolling on mobile
-            if (window.innerWidth <= 768) {
-                const touchEndY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-                if (Math.abs(touchStartY - touchEndY) > 10) return;
-            }
-
-            const targetId = this.getAttribute('data-target');
-            const modal = document.getElementById(targetId);
-            
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Focus for accessibility
-                modal.setAttribute('tabindex', '-1');
-                modal.focus();
-            }
-        });
-
-        // For touch devices
-        card.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-        });
-    });
-
-    // Close modal with back link
-    backLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeAllModals();
-        });
-    });
-
-    // Close modal with close button
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            closeAllModals();
-        });
-    });
-
-    // Close modal when clicking outside content
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAllModals();
-            }
-        });
-        
-        // Prevent background scrolling when modal is open
-        modal.addEventListener('touchmove', function(e) {
-            if (this.classList.contains('active')) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    });
-
-    // Close all modals and re-enable scrolling
-    function closeAllModals() {
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        document.body.style.overflow = '';
-    }
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeAllModals();
-        }
-    });
-
-    // Handle iOS viewport height changes
-    function handleViewportHeight() {
-        if (window.innerWidth <= 768) {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-    }
-
-    // Initialize and listen for resize
-    handleViewportHeight();
-    window.addEventListener('resize', handleViewportHeight);
-}
-
-// Call this in your DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', function() {
-    // ... your existing code ...
-    
-    initExperienceModals();
-    initFlipCards();
-});
-
-// Replace your initExperienceModals function with this version
-function initExperienceModals() {
-    const expCards = document.querySelectorAll('.exp-card');
-    const modals = document.querySelectorAll('.experience-modal');
-    const backLinks = document.querySelectorAll('.back-link');
-    const closeButtons = document.querySelectorAll('.close-modal');
-
-    // Open modal when clicking a card
-    expCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const modal = document.getElementById(targetId);
-            
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Force redraw for mobile browsers
-                modal.style.display = 'none';
-                modal.offsetHeight;
-                modal.style.display = 'flex';
-                
-                // Focus for accessibility
-                modal.focus();
-            }
-        });
-    });
-
-    // Close modal with back link
-    backLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeAllModals();
-        });
-    });
-
-    // Close modal with close button - fixed version
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from reaching modal
-            closeAllModals();
-        }, true); // Use capturing phase to ensure event fires
-    });
-
-    // Close modal when clicking outside content
-    modals.forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAllModals();
-            }
-        });
-    });
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeAllModals();
-        }
-    });
-
-    // Close all modals and re-enable scrolling
-    function closeAllModals() {
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-        document.body.style.overflow = '';
-    }
-
-    // iOS viewport height fix
-    function setModalHeight() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        
-        modals.forEach(modal => {
-            if (modal.classList.contains('active')) {
-                const modalContent = modal.querySelector('.modal-container');
-                if (modalContent) {
-                    modalContent.style.maxHeight = `${window.innerHeight * 0.85}px`;
-                }
-            }
+            // Form handling logic would go here
+            alert('Form submission would be handled here in a real implementation');
         });
     }
 
-    // Initialize and listen for resize
-    setModalHeight();
-    window.addEventListener('resize', setModalHeight);
-    window.addEventListener('orientationchange', setModalHeight);
-}
-
-function initExperienceModals() {
-    // Check if mobile view
-    if (window.innerWidth <= 768) {
-        // Mobile accordion functionality
-        const expCards = document.querySelectorAll('.exp-card');
-        
-        expCards.forEach(card => {
-            // Create mobile content from modal data
-            const targetId = card.getAttribute('data-target');
-            const modal = document.getElementById(targetId);
-            
-            if (modal) {
-                const modalContent = modal.querySelector('.modal-exp-details').innerHTML;
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'exp-card-content';
-                contentDiv.innerHTML = `
-                    <ul>${modalContent}</ul>
-                `;
-                card.appendChild(contentDiv);
-                
-                // Create header structure
-                const frontContent = card.querySelector('.exp-card-front').innerHTML;
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'exp-card-header';
-                headerDiv.innerHTML = `
-                    <div class="exp-card-logo" style="background-image: url(${card.querySelector('.exp-card-front').style.backgroundImage.replace('url("', '').replace('")', '')})"></div>
-                    <div class="exp-card-text">
-                        ${frontContent}
-                    </div>
-                    <i class="fas fa-chevron-down exp-card-arrow"></i>
-                `;
-                
-                // Replace original content
-                card.innerHTML = '';
-                card.appendChild(headerDiv);
-                card.appendChild(contentDiv);
-                
-                // Add click handler
-                headerDiv.addEventListener('click', function() {
-                    card.classList.toggle('active');
-                    
-                    // Close other open cards
-                    expCards.forEach(otherCard => {
-                        if (otherCard !== card && otherCard.classList.contains('active')) {
-                            otherCard.classList.remove('active');
-                        }
-                    });
-                });
-            }
-        });
-    } else {
-        // Desktop modal functionality (keep your existing desktop code)
-        const expCards = document.querySelectorAll('.exp-card');
-        const modals = document.querySelectorAll('.experience-modal');
-        const backLinks = document.querySelectorAll('.back-link');
-        const closeButtons = document.querySelectorAll('.close-modal');
-
-        expCards.forEach(card => {
-            card.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const modal = document.getElementById(targetId);
-                
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
+    // =============================================
+    // Service Worker Registration (for PWA)
+    // =============================================
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('ServiceWorker registration successful');
+            }).catch(err => {
+                console.log('ServiceWorker registration failed: ', err);
             });
         });
-
-        // ... rest of your desktop modal code ...
     }
+});
+
+// =============================================
+// Helper Functions
+// =============================================
+
+/**
+ * Debounce function to limit how often a function can fire
+ */
+function debounce(func, wait = 100) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(this, args);
+        }, wait);
+    };
 }
 
-// Initialize on load and window resize
-document.addEventListener('DOMContentLoaded', initExperienceModals);
-window.addEventListener('resize', function() {
-    // Reinitialize when switching between mobile/desktop
-    initExperienceModals();
-});
+/**
+ * Throttle function to limit how often a function can fire
+ */
+function throttle(func, limit = 100) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
