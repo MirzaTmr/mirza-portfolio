@@ -130,6 +130,7 @@
             setTimeout(typeCommand, index * 500);
         }
     });
+    
 
     // =============================================
     // Experience Section - Dual Mobile/Desktop
@@ -191,8 +192,8 @@
                         
                         // Open new modal
                         modal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                        document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px'; // Prevent scrollbar jump
+
+                        
                         
                         // Focus trap for accessibility
                         trapFocus(modal);
@@ -369,3 +370,30 @@ function throttle(func, limit = 100) {
         }
     };
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const accordions = document.querySelectorAll(".exp-accordion");
+
+    accordions.forEach((accordion) => {
+        const header = accordion.querySelector(".exp-header");
+        const content = accordion.querySelector(".exp-content");
+        const arrow = accordion.querySelector(".exp-arrow");
+
+        header.addEventListener("click", () => {
+            const isOpen = accordion.classList.contains("open");
+
+            // Close all accordions first
+            accordions.forEach((acc) => {
+                acc.classList.remove("open");
+                acc.querySelector(".exp-content").style.maxHeight = null;
+                acc.querySelector(".exp-arrow").style.transform = "rotate(0deg)";
+            });
+
+            // Open this one if it was closed
+            if (!isOpen) {
+                accordion.classList.add("open");
+                content.style.maxHeight = content.scrollHeight + "px";
+                arrow.style.transform = "rotate(180deg)";
+            }
+        });
+    });
+});
